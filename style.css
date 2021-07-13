@@ -1,0 +1,19 @@
+#profileImage {
+	border: 1px solid black;
+	border-radius: 50%;
+	vertical-align: bottom;
+	margin: 1em;
+}
+
+#personalDetails {
+	margin-left: 1em;
+	display: inline-block;
+}
+
+#output {
+	margin: 1em;
+	display: inline-block;
+	padding: 15px;
+	border: 1px solid black;
+	border-radius: 15px;
+}
