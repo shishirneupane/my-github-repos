@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My Portfolio</title>
+</head>
+
+<body>
+	<div id="loading">
+		Loading...
+	</div>
+
+	<div id="mainContainer" hidden>
+		<img height="100" width="100" id="profileImage">
+		<h2 id="fullName"></h2>
+		<p id="bio"></p>
+		<h5 id="followersInfo"></h5>
+		<h5 id="followingInfo"></h5>
+		<h5 id="reposInfo"></h5>
+		<p>Check my <a id="githubLink">GitHub</a>.</p>
+		<p>Check my <a id="linkedinLink">LinkedIn</a>.</p>
+	</div>
+	<hr>
+	<div id="output"></div>
+
+  <script>
+		fetch('https://api.github.com/users/shishirneupane')
+		.then((res) => res.json())
+		.then((data) => {
+			console.log(data)
+			document.getElementById('profileImage').src = data['avatar_url']
+			document.getElementById('fullName').textContent = data['name']
+			document.getElementById('bio').textContent = data['bio']
+			document.getElementById('followersInfo').textContent = 'GitHub followers: ' + data['followers']
+			document.getElementById('followingInfo').textContent = 'GitHub following: ' + data['following']
+			document.getElementById('reposInfo').textContent = 'Public repositories: ' + data['public_repos']
+			document.getElementById('githubLink').href = data['html_url']
+			document.getElementById('linkedinLink').href = data['blog']
+			document.getElementById('mainContainer').hidden = false
+			document.getElementById('loading').hidden = true
+		})
+		.catch((err) => console.log(err));
+			
+		fetch('https://api.github.com/users/shishirneupane/repos')
+		.then(res => res.json())
+		.then((reposData) => {
+			console.log(reposData)
+			let output = '<h2>My Projects</h2>'
+			reposData.forEach(function(project){
+				output += `
+					<div>
+						<h3>Project Name: ${project.name}</h3>
+						<h5>Project Description: ${project.description}</h5>
+						<h5>GitHub Repo: ${project.html_url} </h5>
+						<h5>Hosted URL: ${project.homepage} </h5>
+						<h5>Date Created: ${project.created_at}</h5>
+						<h5>Date Updated: ${project.updated_at}</h5>
+						<hr>
+					</div>
+				`
+			})
+			document.getElementById('output').innerHTML = output
+		})
+		.catch((err) => console.log(err));
+	</script>
+</body>
+</html>
