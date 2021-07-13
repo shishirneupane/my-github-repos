@@ -5,9 +5,9 @@ fetch('https://api.github.com/users/shishirneupane')
 	document.getElementById('profileImage').src = data['avatar_url']
 	document.getElementById('fullName').textContent = data['name']
 	document.getElementById('bio').textContent = data['bio']
-	document.getElementById('followersInfo').textContent = 'GitHub followers: ' + data['followers']
-	document.getElementById('followingInfo').textContent = 'GitHub following: ' + data['following']
-	document.getElementById('reposInfo').textContent = 'Public repositories: ' + data['public_repos']
+	document.getElementById('followersInfo').textContent = 'GitHub followers - ' + data['followers']
+	document.getElementById('followingInfo').textContent = 'GitHub following - ' + data['following']
+	document.getElementById('reposInfo').textContent = 'GitHub public repositories - ' + data['public_repos']
 	document.getElementById('githubLink').href = data['html_url']
 	document.getElementById('linkedinLink').href = data['blog']
 	document.getElementById('mainContainer').hidden = false
@@ -24,7 +24,7 @@ fetch('https://api.github.com/users/shishirneupane/repos')
 	document.getElementById('output').innerHTML = output;
 	for (var i=0; i < reposData.length; i++) {
 		document.getElementById('output').innerHTML += 
-		"<a href=" + reposData[i].html_url + "/>" + reposData[i].name + "<br/><br/>";
+		"<a href=" + reposData[i].html_url + " id='singleRepo' target='_blank'/>" + reposData[i].name + "<br/><br/>";
 	}
 })
 .catch((err) => console.log(err));
