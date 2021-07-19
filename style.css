@@ -1,8 +1,6 @@
 html {
-	/* background-color: rgb(131 175 15 / 64%); */
+	background-color: #e9ecef;
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	background-image: url('img.jpg');
-	background-size: cover;
 }
 
 #profileImage {
